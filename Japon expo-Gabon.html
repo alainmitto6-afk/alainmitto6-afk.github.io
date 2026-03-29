@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>東韓 TOKAN – Boutique Japonaise & Coréenne</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="Japon expo-Gabon.css"/>
+</head>
+<body>
+
+<!-- ========== LOADER ========== -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="kanji-anim">東韓</div>
+    <div class="loader-bar"><span></span></div>
+  </div>
+</div>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="#">
+      <span class="brand-jp">東韓</span>
+      <span class="brand-en">TOKAN</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <i class="fas fa-bars" style="color:var(--gold)"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="#hero">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#categories">Catégories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#produits">Boutique</a></li>
+        <li class="nav-item"><a class="nav-link" href="#culture">Culture</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-icons d-flex align-items-center gap-3">
+        <button class="icon-btn" id="searchToggle" title="Rechercher"><i class="fas fa-search"></i></button>
+        <button class="icon-btn" id="wishlistBtn" title="Favoris"><i class="fas fa-heart"></i><span class="badge-count" id="wishBadge">0</span></button>
+        <button class="icon-btn" id="cartBtn" title="Panier"><i class="fas fa-shopping-bag"></i><span class="badge-count" id="cartBadge">0</span></button>
+      </div>
+    </div>
+  </div>
+  <!-- Search Bar -->
+  <div class="search-bar-wrap" id="searchBar">
+    <div class="container">
+      <input type="text" id="searchInput" placeholder="Rechercher... 검색... 検索..." class="search-input"/>
+      <button onclick="closeSearch()"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="sakura-container" id="sakuraContainer"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-split">
+      <div class="hero-side japan" data-side="japan">
+        <div class="side-content">
+          <p class="side-label">日本</p>
+          <h2>Japon</h2>
+          <p class="side-desc">Élégance & Tradition</p>
+          <a href="#produits" class="btn-culture" onclick="filterCulture('japan')">Explorer →</a>
+        </div>
+      </div>
+      <div class="hero-divider">
+        <div class="divider-circle">
+          <span class="brand-jp-hero">東韓</span>
+        </div>
+      </div>
+      <div class="hero-side korea" data-side="korea">
+        <div class="side-content">
+          <p class="side-label">한국</p>
+          <h2>Corée</h2>
+          <p class="side-desc">Modernité & Charme</p>
+          <a href="#produits" class="btn-culture" onclick="filterCulture('korea')">Explorer →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ========== BANNIERE PROMO ========== -->
+<div class="promo-band">
+  <div class="promo-track">
+    <span>🌸 Livraison gratuite dès 50€</span>
+    <span>🎎 Produits authentiques japonais & coréens</span>
+    <span>✨ Nouveautés chaque semaine</span>
+    <span>🍜 Éditions limitées disponibles</span>
+    <span>🌸 Livraison gratuite dès 50€</span>
+    <span>🎎 Produits authentiques japonais & coréens</span>
+    <span>✨ Nouveautés chaque semaine</span>
+    <span>🍜 Éditions limitées disponibles</span>
+  </div>
+</div>
+
+<!-- ========== CATEGORIES ========== -->
+<section id="categories" class="section-pad">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Parcourir</span>
+      <h2>Nos Catégories</h2>
+      <div class="title-deco"></div>
+    </div>
+    <div class="row g-4 mt-4">
+      <div class="col-6 col-md-4 col-lg-2" onclick="filterByCategory('mode')">
+        <div class="cat-card">
+          <div class="cat-icon">👘</div>
+          <span>Mode</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" onclick="filterByCategory('beaute')">
+        <div class="cat-card">
+          <div class="cat-icon">🌿</div>
+          <span>Beauté</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" onclick="filterByCategory('deco')">
+        <div class="cat-card">
+          <div class="cat-icon">🏮</div>
+          <span>Déco</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" onclick="filterByCategory('gastronomie')">
+        <div class="cat-card">
+          <div class="cat-icon">🍱</div>
+          <span>Gastronomie</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" onclick="filterByCategory('art')">
+        <div class="cat-card">
+          <div class="cat-icon">🎨</div>
+          <span>Art & Manga</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" onclick="filterByCategory('high-tech')">
+        <div class="cat-card">
+          <div class="cat-icon">🎮</div>
+          <span>High-Tech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRODUITS ========== -->
+<section id="produits" class="section-pad bg-dark-section">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Boutique</span>
+      <h2>Nos Produits</h2>
+      <div class="title-deco"></div>
+    </div>
+
+    <!-- Filtres -->
+    <div class="filter-bar mt-4 mb-5">
+      <button class="filter-btn active" onclick="filterCulture('all')">Tout</button>
+      <button class="filter-btn japan-btn" onclick="filterCulture('japan')">🇯🇵 Japonais</button>
+      <button class="filter-btn korea-btn" onclick="filterCulture('korea')">🇰🇷 Coréen</button>
+      <select id="sortSelect" class="filter-select ms-auto" onchange="sortProducts()">
+        <option value="default">Trier par</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+        <option value="name">Nom A-Z</option>
+      </select>
+    </div>
+
+    <!-- Grille produits -->
+    <div class="row g-4" id="productsGrid"></div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-5">
+      <button class="btn-load-more" id="loadMoreBtn" onclick="loadMore()">Charger plus <i class="fas fa-arrow-down ms-2"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION CULTURE ========== -->
+<section id="culture" class="section-pad">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Découverte</span>
+      <h2>Plongée Culturelle</h2>
+      <div class="title-deco"></div>
+    </div>
+    <div class="row g-4 mt-4 align-items-center">
+      <div class="col-md-6">
+        <div class="culture-card japan-card">
+          <div class="culture-bg"></div>
+          <div class="culture-content">
+            <p class="culture-kanji">日本</p>
+            <h3>L'Âme du Japon</h3>
+            <p>Du cerisier en fleurs aux arts du sabre, le Japon allie avec grâce l'ancestral et le futuriste. Nos produits capturent cette essence unique — wabi-sabi, ikigai, et mono no aware.</p>
+            <div class="culture-tags">
+              <span>Origami</span><span>Sakura</span><span>Kimono</span><span>Zen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="culture-card korea-card">
+          <div class="culture-bg"></div>
+          <div class="culture-content">
+            <p class="culture-kanji">한국</p>
+            <h3>L'Énergie de la Corée</h3>
+            <p>La Corée du Sud rayonne entre K-pop mondiale, skincare révolutionnaire et gastronomie audacieuse. Nos sélections incarnent ce dynamisme — entre hanbok traditionnel et K-beauty innovant.</p>
+            <div class="culture-tags">
+              <span>K-Pop</span><span>Hanbok</span><span>K-Beauty</span><span>Hallyu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NEWSLETTER ========== -->
+<section class="newsletter-section">
+  <div class="container text-center">
+    <p class="newsletter-kanji">お知らせ · 뉴스레터</p>
+    <h2>Rejoignez Notre Communauté</h2>
+    <p class="newsletter-sub">Recevez nos offres exclusives, actualités culturelles et nouveautés en avant-première.</p>
+    <div class="newsletter-form mt-4">
+      <input type="email" id="nlEmail" placeholder="votre@email.com" class="nl-input"/>
+      <button onclick="subscribeNewsletter()" class="nl-btn">S'abonner ✦</button>
+    </div>
+    <div id="nlMessage" class="nl-message"></div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Contact</span>
+      <h2>Nous Écrire</h2>
+      <div class="title-deco"></div>
+    </div>
+    <div class="row g-5 mt-2">
+      <div class="col-md-5">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Adresse</strong>
+              <p>OKALA Derriere l'aeroport, Librevilli BP45</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:alainmitto6@gmail.com">alainmitto6@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Téléphone</strong>
+              <p>+241 74 679 286
+            </div>
+          </div>
+          <div class="social-links mt-4">
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <form id="contactForm" onsubmit="submitContact(event)">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group-custom">
+                <input type="text" id="cName" placeholder="Votre nom" required/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group-custom">
+                <input type="email" id="cEmail" placeholder="Votre email" required/>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group-custom">
+                <input type="text" id="cSubject" placeholder="Sujet"/>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group-custom">
+                <textarea id="cMessage" rows="5" placeholder="Votre message..." required></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn-submit">Envoyer le message <i class="fas fa-paper-plane ms-2"></i></button>
+            </div>
+            <div id="formMsg" class="form-msg"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="footer-brand">
+          <span class="brand-jp">東韓</span>
+          <span class="brand-en">TOKAN</span>
+        </div>
+        <p class="footer-desc">L'authenticité japonaise et coréenne, livrée chez vous. Qualité, passion, culture.</p>
+      </div>
+      <div class="col-md-2">
+        <h6 class="footer-title">Boutique</h6>
+        <ul class="footer-links">
+          <li><a href="#produits">Tous les produits</a></li>
+          <li><a href="#categories">Catégories</a></li>
+          <li><a href="#">Nouveautés</a></li>
+          <li><a href="#">Promotions</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h6 class="footer-title">Info</h6>
+        <ul class="footer-links">
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 class="footer-title">Paiement sécurisé</h6>
+        <div class="payment-icons">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-paypal"></i>
+          <i class="fab fa-cc-apple-pay"></i>
+        </div>
+        <p class="mt-3 small" style="opacity:.6">© 2024 TOKAN. Tous droits réservés.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== CART MODAL ========== -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-end modal-lg">
+    <div class="modal-content cart-modal-content">
+      <div class="modal-header cart-header">
+        <h5><i class="fas fa-shopping-bag me-2"></i>Mon Panier</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="cartBody">
+        <div class="empty-cart text-center py-5">
+          <div class="empty-icon">🛍️</div>
+          <p>Votre panier est vide</p>
+        </div>
+      </div>
+      <div class="modal-footer cart-footer" id="cartFooter" style="display:none!important">
+        <div class="w-100">
+          <div class="d-flex justify-content-between mb-3">
+            <span class="cart-total-label">Total</span>
+            <span class="cart-total-amount" id="cartTotal">0€</span>
+          </div>
+          <button class="btn-checkout w-100" onclick="checkout()">Commander <i class="fas fa-arrow-right ms-2"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- ========== BACK TO TOP ========== -->
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+// ===== DATA PRODUITS =====
+const PRODUCTS = [
+  // JAPON
+  { id:1, name:"Kimono Sakura", sub:"Soie traditionnelle", price:89.90, oldPrice:null, culture:"japan", category:"mode", badge:"new", rating:5, img:"KIMONO SAKURA.WEBP", kanji:"着物" },
+  { id:2, name:"Ramen Nissin", sub:"Pack découverte 12 sachets", price:14.50, oldPrice:18.00, culture:"japan", category:"gastronomie", badge:"promo", rating:4, img:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80", kanji:"拉麺" },
+  { id:3, name:"Figurine Maneki-neko", sub:"Céramique artisanale", price:35.00, oldPrice:null, culture:"japan", category:"deco", badge:null, rating:5, img:"Minaki neko.WEBP", kanji:"招猫" },
+  { id:4, name:"Sérum Hyaluronique", sub:"Cosmétique japonais", price:29.90, oldPrice:null, culture:"japan", category:"beaute", badge:"new", rating:4, img:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80", kanji:"美容" },
+  { id:5, name:"Poster Hokusai", sub:"Reproduction premium A3", price:22.00, oldPrice:null, culture:"japan", category:"art", badge:null, rating:5, img:"Poster hokusai.WEBP", kanji:"葛飾" },
+  { id:6, name:"Matcha Premium", sub:"Poudre thé vert 100g", price:18.90, oldPrice:24.00, culture:"japan", category:"gastronomie", badge:"promo", rating:5, img:"Matcha.jpg", kanji:"抹茶" },
+  { id:7, name:"Manette Hori", sub:"Gaming Japan Edition", price:79.90, oldPrice:null, culture:"japan", category:"high-tech", badge:"limited", rating:4, img:"https://images.unsplash.com/photo-1580327344181-c1163234e5a0?w=400&q=80", kanji:"遊戯" },
+  { id:8, name:"Yukata Été", sub:"Coton léger – Motif floral", price:55.00, oldPrice:null, culture:"japan", category:"mode", badge:null, rating:4, img:"Yukata ete.WEBP", kanji:"浴衣" },
+
+  // CORÉE
+  { id:9, name:"Hanbok Festif", sub:"Soie brodée – Édition premium", price:129.00, oldPrice:null, culture:"korea", category:"mode", badge:"limited", rating:5, img:"Hanbok festif.WEBP", kanji:"한복" },
+  { id:10, name:"Kit K-Beauty", sub:"Set soin 7 étapes coréen", price:44.90, oldPrice:59.00, culture:"korea", category:"beaute", badge:"promo", rating:5, img:"https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400&q=80", kanji:"뷰티" },
+  { id:11, name:"Kimchi Maison", sub:"Bocal fermenté 500g", price:9.90, oldPrice:null, culture:"korea", category:"gastronomie", badge:"new", rating:4, img:"Kimchi maison.WEBP", kanji:"김치" },
+  { id:12, name:"Affiche K-Pop", sub:"Impression premium 50x70", price:19.90, oldPrice:null, culture:"korea", category:"art", badge:null, rating:4, img:"stray kids.WEBP", kanji:"음악" },
+  { id:13, name:"Masque Tissu Aloe", sub:"Lot de 10 masques hydratants", price:12.50, oldPrice:16.00, culture:"korea", category:"beaute", badge:"promo", rating:5, img:"masque aloe.WEBP", kanji:"마스크" },
+  { id:14, name:"Tteokbokki Kit", sub:"Gâteaux de riz épicés", price:7.90, oldPrice:null, culture:"korea", category:"gastronomie", badge:null, rating:4, img:"tteokbokki.jpg", kanji:"떡볶이" },
+  { id:15, name:"Vase Hanji", sub:"Papier coréen traditionnel", price:48.00, oldPrice:null, culture:"korea", category:"deco", badge:"new", rating:5, img:"vase.WEBP", kanji:"한지" },
+  { id:16, name:"Console Indie KR", sub:"Collection jeux indépendants", price:59.90, oldPrice:null, culture:"korea", category:"high-tech", badge:"limited", rating:4, img:"console.WEBP", kanji:"게임" },
+];
+
+// ===== STATE =====
+let cart = JSON.parse(localStorage.getItem('tokan_cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('tokan_wish') || '[]');
+let currentFilter = 'all';
+let currentCategory = null;
+let currentSort = 'default';
+let visibleCount = 8;
+let filteredProducts = [...PRODUCTS];
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  initLoader();
+  initSakura();
+  initNavScroll();
+  initSearch();
+  renderProducts();
+  updateBadges();
+  initReveal();
+  initCartBtn();
+});
+
+// ===== LOADER =====
+function initLoader() {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) loader.classList.add('hidden');
+    // Remove from DOM after transition
+    setTimeout(() => { if (loader) loader.remove(); }, 700);
+  }, 2000);
+}
+
+// ===== SAKURA PETALS =====
+function initSakura() {
+  const container = document.getElementById('sakuraContainer');
+  if (!container) return;
+  for (let i = 0; i < 20; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.animationDuration = (Math.random() * 8 + 6) + 's';
+    petal.style.animationDelay = (Math.random() * 10) + 's';
+    petal.style.width = (Math.random() * 8 + 8) + 'px';
+    petal.style.height = petal.style.width;
+    petal.style.opacity = Math.random() * 0.6 + 0.3;
+    container.appendChild(petal);
+  }
+}
+
+// ===== NAVBAR SCROLL =====
+function initNavScroll() {
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+
+    const backTop = document.getElementById('backTop');
+    if (window.scrollY > 400) backTop.classList.add('show');
+    else backTop.classList.remove('show');
+  });
+}
+
+// ===== SEARCH =====
+function initSearch() {
+  document.getElementById('searchToggle').addEventListener('click', () => {
+    const sb = document.getElementById('searchBar');
+    sb.classList.toggle('open');
+    if (sb.classList.contains('open')) {
+      setTimeout(() => document.getElementById('searchInput').focus(), 100);
+    }
+  });
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    if (q.length === 0) {
+      filteredProducts = applyFilters(PRODUCTS);
+    } else {
+      filteredProducts = PRODUCTS.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.sub.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q)
+      );
+    }
+    visibleCount = 8;
+    renderProducts();
+    if (q.length > 0) {
+      document.getElementById('produits').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+}
+
+function closeSearch() {
+  document.getElementById('searchBar').classList.remove('open');
+}
+
+// ===== FILTERS =====
+function applyFilters(products) {
+  let res = [...products];
+  if (currentFilter !== 'all') res = res.filter(p => p.culture === currentFilter);
+  if (currentCategory) res = res.filter(p => p.category === currentCategory);
+  return sortArr(res);
+}
+
+function filterCulture(culture) {
+  currentFilter = culture;
+  currentCategory = null;
+  filteredProducts = applyFilters(PRODUCTS);
+  visibleCount = 8;
+  renderProducts();
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('produits').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Highlight correct button
+  if (culture === 'all') document.querySelector('.filter-btn').classList.add('active');
+  else if (culture === 'japan') document.querySelector('.japan-btn').classList.add('active');
+  else if (culture === 'korea') document.querySelector('.korea-btn').classList.add('active');
+}
+
+function filterByCategory(cat) {
+  currentCategory = currentCategory === cat ? null : cat;
+  filteredProducts = applyFilters(PRODUCTS);
+  visibleCount = 8;
+  renderProducts();
+  document.getElementById('produits').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function sortProducts() {
+  currentSort = document.getElementById('sortSelect').value;
+  filteredProducts = applyFilters(PRODUCTS);
+  renderProducts();
+}
+
+function sortArr(arr) {
+  if (currentSort === 'price-asc') return [...arr].sort((a,b) => a.price - b.price);
+  if (currentSort === 'price-desc') return [...arr].sort((a,b) => b.price - a.price);
+  if (currentSort === 'name') return [...arr].sort((a,b) => a.name.localeCompare(b.name));
+  return arr;
+}
+
+// ===== RENDER PRODUCTS =====
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const loadBtn = document.getElementById('loadMoreBtn');
+  if (!grid) return;
+
+  const toShow = filteredProducts.slice(0, visibleCount);
+
+  if (toShow.length === 0) {
+    grid.innerHTML = `<div class="col-12 text-center py-5" style="color:var(--text-muted)">
+      <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
+      <p>Aucun produit trouvé.</p>
+    </div>`;
+    loadBtn.style.display = 'none';
+    return;
+  }
+
+  grid.innerHTML = toShow.map(p => productCard(p)).join('');
+
+  if (visibleCount >= filteredProducts.length) loadBtn.style.display = 'none';
+  else loadBtn.style.display = 'inline-flex';
+
+  // Trigger reveal for new cards
+  setTimeout(() => {
+    document.querySelectorAll('.product-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('visible'), i * 80);
+    });
+  }, 50);
+}
+
+function productCard(p) {
+  const stars = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+  const badge = p.badge ? `<span class="product-badge badge-${p.badge}">${badgeLabel(p.badge)}</span>` : '';
+  const oldP = p.oldPrice ? `<span class="product-price-old">${p.oldPrice.toFixed(2)}€</span>` : '';
+  const inWish = wishlist.includes(p.id);
+
+  return `
+    <div class="col-6 col-md-4 col-xl-3">
+      <div class="product-card reveal" style="animation-delay:${Math.random()*0.3}s">
+        ${badge}
+        <div class="product-img-wrap">
+          <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+          <div class="product-overlay">
+            <button class="overlay-btn" onclick="quickView(${p.id})" title="Voir détails"><i class="fas fa-eye"></i></button>
+            <button class="overlay-btn ${inWish ? 'btn-wished' : ''}" onclick="toggleWish(${p.id}, this)" title="Favoris"><i class="fas fa-heart" style="${inWish ? 'color:var(--japan-red)' : ''}"></i></button>
+          </div>
+          <div class="product-culture-tag">${p.kanji}</div>
+        </div>
+        <div class="product-body">
+          <div class="star-rating mb-1">${stars}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-sub">${p.sub}</div>
+          <div class="product-price-row">
+            <div>
+              <span class="product-price">${p.price.toFixed(2)}€</span>
+              ${oldP}
+            </div>
+            <button class="btn-add-cart" onclick="addToCart(${p.id})" title="Ajouter au panier">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function badgeLabel(b) {
+  return { new: 'Nouveau', promo: 'Promo', limited: 'Limité' }[b] || b;
+}
+
+function loadMore() {
+  visibleCount += 4;
+  renderProducts();
+}
+
+// ===== CART =====
+function initCartBtn() {
+  document.getElementById('cartBtn').addEventListener('click', () => {
+    renderCart();
+    const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+    modal.show();
+  });
+}
+
+function addToCart(id) {
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    const p = PRODUCTS.find(p => p.id === id);
+    cart.push({ id, name: p.name, price: p.price, img: p.img, qty: 1 });
+  }
+  saveCart();
+  updateBadges();
+  const p = PRODUCTS.find(p => p.id === id);
+  showToast(`🛍️ <strong>${p.name}</strong> ajouté au panier`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+  updateBadges();
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem('tokan_cart', JSON.stringify(cart));
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const footer = document.getElementById('cartFooter');
+  const totalEl = document.getElementById('cartTotal');
+
+  if (cart.length === 0) {
+    body.innerHTML = `<div class="empty-cart text-center py-5"><div class="empty-icon">🛍️</div><p>Votre panier est vide</p></div>`;
+    footer.style.display = 'none !important';
+    return;
+  }
+
+  let total = 0;
+  body.innerHTML = cart.map(item => {
+    total += item.price * item.qty;
+    return `<div class="cart-item">
+      <img src="${item.img}" alt="${item.name}"/>
+      <div class="cart-item-info">
+        <strong>${item.name}</strong>
+        <small>Qté: ${item.qty}</small>
+      </div>
+      <span class="cart-item-price">${(item.price * item.qty).toFixed(2)}€</span>
+      <button class="btn-remove-cart" onclick="removeFromCart(${item.id})"><i class="fas fa-times"></i></button>
+    </div>`;
+  }).join('');
+
+  footer.style.cssText = 'display:block!important';
+  totalEl.textContent = total.toFixed(2) + '€';
+}
+
+function checkout() {
+  showToast('✨ Redirection vers le paiement sécurisé…');
+  setTimeout(() => {
+    cart = [];
+    saveCart();
+    updateBadges();
+    bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+    showToast('🎉 Commande confirmée ! Merci pour votre achat chez TOKAN.');
+  }, 2000);
+}
+
+// ===== WISHLIST =====
+function toggleWish(id, btn) {
+  const idx = wishlist.indexOf(id);
+  const p = PRODUCTS.find(p => p.id === id);
+  if (idx > -1) {
+    wishlist.splice(idx, 1);
+    btn.querySelector('i').style.color = '';
+    showToast(`💔 <strong>${p.name}</strong> retiré des favoris`);
+  } else {
+    wishlist.push(id);
+    btn.querySelector('i').style.color = 'var(--japan-red)';
+    showToast(`❤️ <strong>${p.name}</strong> ajouté aux favoris`);
+  }
+  localStorage.setItem('tokan_wish', JSON.stringify(wishlist));
+  updateBadges();
+}
+
+// ===== BADGES =====
+function updateBadges() {
+  const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
+  document.getElementById('cartBadge').textContent = cartCount;
+  document.getElementById('wishBadge').textContent = wishlist.length;
+}
+
+// ===== QUICK VIEW =====
+function quickView(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  const stars = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+  const old = p.oldPrice ? `<s style="color:var(--text-muted);font-size:.9rem">${p.oldPrice.toFixed(2)}€</s>` : '';
+
+  // Create a temporary modal dynamically
+  const existing = document.getElementById('quickViewModal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.className = 'modal fade';
+  modal.id = 'quickViewModal';
+  modal.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:var(--dark2);border:1px solid rgba(201,168,76,.2);color:var(--text)">
+        <div class="modal-header" style="border-bottom:1px solid rgba(201,168,76,.15)">
+          <h5 style="font-family:var(--font-display);color:var(--cream);font-style:italic">${p.name}</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="row g-0">
+            <div class="col-md-5">
+              <img src="${p.img}" alt="${p.name}" style="width:100%;height:300px;object-fit:cover"/>
+            </div>
+            <div class="col-md-7 p-4">
+              <div style="color:var(--gold);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem">${p.culture === 'japan' ? '🇯🇵 Japonais' : '🇰🇷 Coréen'} · ${p.category}</div>
+              <h4 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);font-style:italic;margin-bottom:.5rem">${p.name}</h4>
+              <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:1rem">${p.sub}</p>
+              <div style="margin-bottom:1rem;font-size:.8rem;color:var(--gold)">${stars}</div>
+              <div style="margin-bottom:1.5rem">
+                <span style="font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:700">${p.price.toFixed(2)}€</span>
+                ${old}
+              </div>
+              <div style="margin-bottom:1rem;font-size:.85rem;color:var(--text-muted)">
+                <i class="fas fa-truck me-2" style="color:var(--gold)"></i>Livraison gratuite dès 50€<br>
+                <i class="fas fa-redo me-2 mt-2" style="color:var(--gold)"></i>Retour sous 30 jours<br>
+                <i class="fas fa-shield-alt me-2 mt-2" style="color:var(--gold)"></i>Produit authentique certifié
+              </div>
+              <button onclick="addToCart(${p.id}); bootstrap.Modal.getInstance(document.getElementById('quickViewModal')).hide();" 
+                style="background:var(--gold);border:none;color:var(--black);padding:.85rem 2rem;font-weight:700;border-radius:4px;width:100%;cursor:pointer;letter-spacing:.08em;transition:all .3s">
+                <i class="fas fa-shopping-bag me-2"></i>Ajouter au panier
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.appendChild(modal);
+  const bsModal = new bootstrap.Modal(modal);
+  bsModal.show();
+  modal.addEventListener('hidden.bs.modal', () => modal.remove());
+}
+
+// ===== NEWSLETTER =====
+function subscribeNewsletter() {
+  const email = document.getElementById('nlEmail').value.trim();
+  const msg = document.getElementById('nlMessage');
+  if (!email || !email.includes('@')) {
+    msg.style.color = 'var(--japan-red)';
+    msg.textContent = '⚠ Veuillez entrer une adresse email valide.';
+    return;
+  }
+  msg.style.color = 'var(--gold)';
+  msg.textContent = '✓ Merci ! Vous êtes maintenant abonné(e) à notre newsletter 東韓.';
+  document.getElementById('nlEmail').value = '';
+  showToast('🌸 Abonnement newsletter confirmé !');
+}
+
+// ===== CONTACT =====
+function submitContact(e) {
+  e.preventDefault();
+  const msg = document.getElementById('formMsg');
+  msg.style.color = 'var(--gold)';
+  msg.textContent = '✓ Message envoyé ! Nous vous répondrons dans les 24h. ありがとう · 감사합니다';
+  document.getElementById('contactForm').reset();
+  showToast('📨 Votre message a été envoyé avec succès !');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast-item';
+  toast.innerHTML = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+// ===== SCROLL REVEAL =====
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.cat-card, .culture-card, .contact-item, .social-icon').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+}
+
+// ===== SMOOTH NAV LINKS =====
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const offset = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+    // Close mobile nav
+    const collapse = document.getElementById('navbarNav');
+    if (collapse.classList.contains('show')) {
+      bootstrap.Collapse.getInstance(collapse)?.hide();
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
